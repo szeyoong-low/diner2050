@@ -1,7 +1,36 @@
 import { auth0 } from "./lib/auth0";
+import { NextResponse, type NextRequest } from "next/server";
 
-export async function proxy(request: Request) {
-  return await auth0.middleware(request);
+const protectedRoutes: string[] = ["/edit", "/edit/*"];
+
+export async function proxy(request: NextRequest) {
+  const response = await auth0.middleware(request);
+
+  const { pathname } = request.nextUrl;
+
+  if (isProtectedRoute(pathname)) {
+    const session = await auth0.getSession(request);
+
+    if (!session) {
+      return NextResponse.redirect(new URL("/auth/login", request.url));
+    }
+  }
+
+  return response;
+}
+
+function isProtectedRoute(path: string): boolean {
+  if (!path || protectedRoutes.length === 0) return false;
+  return protectedRoutes.some((route) => {
+    // For exact matches
+    if (!route.includes("*")) {
+      return path === route;
+    }
+
+    // For wildcard routes (e.g., /dashboard/*)
+    const basePath = route.replace("/*", "");
+    return path === basePath || path.startsWith(`${basePath}/`);
+  });
 }
 
 export const config = {
