@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
-import { Michroma } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Auth0Provider } from "@auth0/nextjs-auth0/client";
 import Header from "@/components/global/header";
+import { type Metadata } from "next";
+import { Michroma } from "next/font/google";
+import { ThemeProvider } from "@/components/ui/theme-provider";
 
 const michroma = Michroma({
   weight: '400',

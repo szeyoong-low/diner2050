@@ -1,14 +1,6 @@
-import Image from "next/image";
-import { auth0 } from "@/lib/auth0";
-import LoginButton from "@/components/auth0/LoginButton";
-import LogoutButton from "@/components/auth0/LogoutButton";
-import Profile from "@/components/auth0/Profile";
 import MenuItem from "@/components/cards/menu-item";
 
 export default async function Home() {
-  const session = await auth0.getSession();
-  const user = session?.user;
-
   return (
     <main className="min-h-screen flex items-center justify-center px-6 py-12 relative overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-150 md:w-225 h-75 md:h-112.5 bg-blue-600/20 rounded-full blur-3xl pointer-events-none" />

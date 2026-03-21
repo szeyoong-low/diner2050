@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import StandardButton from "../buttons/standard-button";
+import StandardButton from "@/components/buttons/standard-button";
 
 export default function LogoutButton() {
   return (
