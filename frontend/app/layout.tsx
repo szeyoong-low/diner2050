@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { ModeToggle } from "@/components/ui/mode-toggle";
+import { Auth0Provider } from "@auth0/nextjs-auth0/client";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,7 +32,8 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
-        <ThemeProvider
+        <Auth0Provider>
+          <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
@@ -42,6 +44,7 @@ export default function RootLayout({
             </header>
             {children}
           </ThemeProvider>
+        </Auth0Provider>
       </body>
     </html>
   );
