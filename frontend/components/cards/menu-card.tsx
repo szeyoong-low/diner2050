@@ -1,7 +1,7 @@
-import { TMenuItem } from "@/types";
-import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Link from "next/link";
 import { StrapiImage } from "@/components/images/strapi-image";
+import { TMenuItem } from "@/types";
 
 interface IMenuCardProps {
   menuItem: TMenuItem;
@@ -26,7 +26,6 @@ export default function MenuCard({ menuItem }: Readonly<IMenuCardProps>) {
                   height={200}
                 />
               </div>
-              
             </div>
 
             <div className="w-full h-px bg-slate-300 dark:bg-white/6" />
@@ -35,6 +34,7 @@ export default function MenuCard({ menuItem }: Readonly<IMenuCardProps>) {
               <CardTitle className="text-xl md:text-2xl font-semibold text-inherit tracking-[-0.02em]">
                 { Name || "Future burger"}
               </CardTitle>
+              
               <p className="text-slate-400 text-sm md:text-[15px] mt-1.5">
                 RM { Price.toFixed(2) || 0.00 }
               </p>
@@ -42,7 +42,7 @@ export default function MenuCard({ menuItem }: Readonly<IMenuCardProps>) {
 
             <CardContent>
               <p className="text-slate-400 text-sm md:text-[15px] text-center leading-relaxed tracking-[-0.01em]">
-                  {Description.slice(0, 150) || "Lorem ipsum dolor sit amet, consectetur adipiscing elit." }
+                {Description.slice(0, 150) || "Lorem ipsum dolor sit amet, consectetur adipiscing elit." }
               </p>
             </CardContent>
           </Card>

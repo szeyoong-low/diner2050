@@ -1,6 +1,6 @@
-import { TMenuItem } from "@/types";
-import MenuCard from "./menu-card";
 import { cn } from "@/lib/utils";
+import MenuCard from "./menu-card";
+import { TMenuItem } from "@/types";
 
 interface ISummariesGridProps {
   menuItems: TMenuItem[];
