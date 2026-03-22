@@ -6,6 +6,7 @@ import { type Metadata } from "next";
 import { Michroma } from "next/font/google";
 import { SidebarInset, SidebarProvider, Sidebar, SidebarTrigger } from "@/components/ui/sidebar";
 import { ThemeProvider } from "@/components/ui/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
 
 const michroma = Michroma({
   weight: '400',
@@ -36,14 +37,18 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-              <SidebarProvider>
-                <AppSidebar />
-                <SidebarInset>
-                  <Header />
-                  <SidebarTrigger />
-                  {children}
-                </SidebarInset>
-              </SidebarProvider>
+            <SidebarProvider>
+              <AppSidebar />
+              <SidebarInset>
+                <Toaster position="bottom-center" />
+
+                <Header />
+
+                <SidebarTrigger />
+                
+                {children}
+              </SidebarInset>
+            </SidebarProvider>
           </ThemeProvider>
         </Auth0Provider>
       </body>
