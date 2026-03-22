@@ -22,7 +22,7 @@ export default async function SingleMenuItem({ params }: SingleMenuItemProps) {
   const session = await auth0.getSession();
 
   return (
-    <div className="flex flex-col items-center gap-4 pb-7">
+    <main className="flex flex-col items-center gap-4 pb-7">
       <div className="flex justify-center">
         <div className="flex h-60 w-60 justify-center items-center">
           <StrapiImage
@@ -47,6 +47,6 @@ export default async function SingleMenuItem({ params }: SingleMenuItemProps) {
       </p>
 
       { session && <DeleteButton documentId={documentId} />}
-    </div>
+    </main>
   );
 }
