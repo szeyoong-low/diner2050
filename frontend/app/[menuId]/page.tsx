@@ -19,8 +19,8 @@ export default async function SingleMenuItem({ params }: SingleMenuItemProps) {
   const menuItem = await loaders.getMenuItemByDocumentId(menuId);
   const menuItemRetrieved = validateApiResponse(menuItem);
   const { documentId, Name, Description, Price, MenuImage } = menuItemRetrieved;
-  const token = await auth0.getSession();
- 
+  const session = await auth0.getSession();
+
   return (
     <div className="flex flex-col items-center gap-4 pb-7">
       <div className="flex justify-center">
@@ -46,7 +46,7 @@ export default async function SingleMenuItem({ params }: SingleMenuItemProps) {
         { Description }
       </p>
 
-      { token && <DeleteButton documentId={documentId} className="" />}
+      { session && <DeleteButton documentId={documentId} />}
     </div>
   );
 }

@@ -8,7 +8,7 @@ import StandardButton from "@/components/buttons/standard-button";
 export default async function Home() {
   const data = await loaders.getMenuItems();
   const menuItemsRetrieved = validateApiResponse(data);
-  const token = await auth0.getSession();
+  const session = await auth0.getSession();
 
   return (
     <main className="min-h-screen flex items-center justify-center px-6 py-6 relative overflow-hidden">
@@ -22,7 +22,7 @@ export default async function Home() {
 
         <MenuGrid menuItems={menuItemsRetrieved} className="grow min-h-[calc(100vh-80px)]" />
 
-        { token &&
+        { session &&
           <StandardButton src="/create" className="fixed bottom-10 right-10 w-60">
             Create menu item
           </StandardButton>
