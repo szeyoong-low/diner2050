@@ -1,7 +1,7 @@
 import { auth0 } from "./lib/auth0";
 import { NextResponse, type NextRequest } from "next/server";
 
-const protectedRoutes: string[] = ["/edit", "/edit/*"];
+const protectedRoutes: string[] = ["/create"];
 
 export async function proxy(request: NextRequest) {
   const response = await auth0.middleware(request);
