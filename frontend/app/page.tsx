@@ -11,13 +11,9 @@ export default async function Home() {
         <div className="md:hidden w-40">
           <AuthButton />
         </div>
-        <div className="relative w-full max-w-sm md:max-w-md">
-          <div className="bg-white/4 backdrop-blur-2xl border border-white/8 rounded-3xl shadow-2xl shadow-black/60 overflow-hidden">
-            <div className="h-px bg-linear-to-r from-transparent via-blue-500/60 to-transparent" />
 
-            <MenuItem />
-          </div>
-        </div>
+
+        <MenuItem />
       </div>
     </main>
   );
