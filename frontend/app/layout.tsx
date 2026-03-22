@@ -28,26 +28,25 @@ export default function RootLayout({
       className={`${michroma.className} h-full antialiased`}
       suppressHydrationWarning
     >
-      <Auth0Provider>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <body className="min-h-full flex flex-col">
-            
-            <SidebarProvider>
-              <AppSidebar />
-              <SidebarInset>
-                <Header />
-                <SidebarTrigger />
-                {children}
-              </SidebarInset>
-            </SidebarProvider>
-          </body>
-        </ThemeProvider>
-      </Auth0Provider>
+      <body className="min-h-full flex flex-col">
+        <Auth0Provider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+              <SidebarProvider>
+                <AppSidebar />
+                <SidebarInset>
+                  <Header />
+                  <SidebarTrigger />
+                  {children}
+                </SidebarInset>
+              </SidebarProvider>
+          </ThemeProvider>
+        </Auth0Provider>
+      </body>
     </html>
   );
 }
