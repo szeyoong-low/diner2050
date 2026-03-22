@@ -34,7 +34,7 @@
       "default": 0,
       "min": 0
     },
-    "Image": {
+    "MenuImage": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
