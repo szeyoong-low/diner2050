@@ -5,7 +5,7 @@ import { validateApiResponse } from "@/lib/error-handler";
 
 export default async function Home() {
   const data = await loaders.getMenuItems();
-  const menuItemsRetrieved = validateApiResponse(data, "summaries");
+  const menuItemsRetrieved = validateApiResponse(data);
 
   return (
     <main className="min-h-screen flex items-center justify-center px-6 py-6 relative overflow-hidden">

@@ -18,9 +18,12 @@ async function getMenuItems(): Promise<TStrapiResponse<TMenuItem[]>> {
 async function getMenuItemByDocumentId(
   documentId: string
 ): Promise<TStrapiResponse<TMenuItem>> {
-  const path = `/api/menu-items/${documentId}`;
-  const url = new URL(path, baseUrl);
-
+  const query = qs.stringify({
+    populate: "*",
+  });
+  
+  const url = new URL(`/api/menu-items/${documentId}`, baseUrl);
+  url.search = query;
   return api.get<TMenuItem>(url.href);
 }
 
