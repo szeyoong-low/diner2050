@@ -24,7 +24,7 @@ export default function ViewingMode({ menuItem }: { menuItem: TMenuItem }) {
         RM { Price.toFixed(2) || 0.00 }
       </p>
 
-      <div className="w-1/2 h-px bg-gray-950 dark:bg-white/6 my-4" />
+      <div className="w-1/2 h-px bg-gray-950 dark:bg-white my-4" />
       
       <p className="text-gray-950 dark:text-slate-400 text-md md:text-[20px] text-center leading-relaxed md:leading-10 w-3/4 md:w-1/2 tracking-widest">
         { Description }
