@@ -32,7 +32,7 @@ export default function MenuCard({ menuItem }: Readonly<IMenuCardProps>) {
             
             <CardHeader className="text-center">
               <CardTitle className="text-xl md:text-2xl font-semibold text-inherit tracking-[-0.02em]">
-                { Name || "Future burger"}
+                { Name }
               </CardTitle>
               
               <p className="text-slate-400 text-sm md:text-[15px] mt-1.5">
@@ -42,7 +42,7 @@ export default function MenuCard({ menuItem }: Readonly<IMenuCardProps>) {
 
             <CardContent>
               <p className="text-slate-400 text-sm md:text-[15px] text-center leading-relaxed tracking-[-0.01em]">
-                {Description.slice(0, 150) || "Lorem ipsum dolor sit amet, consectetur adipiscing elit." }
+                {Description.slice(0, 150) }
               </p>
             </CardContent>
           </Card>
