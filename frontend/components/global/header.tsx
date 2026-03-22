@@ -1,24 +1,19 @@
-import { auth0 } from "@/lib/auth0";
-import LoginButton from "../auth0/LoginButton";
+import AuthButton from "../auth0/AuthButton";
 import Logo from "../global/logo";
-import LogoutButton from "../auth0/LogoutButton";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 
 export default async function Header() {
-  const session = await auth0.getSession();
-  const user = session?.user;
+
 
   return (
     <div className="flex justify-center items-center min-w-full h-20 bg-inherit border-b border-indigo-500 p-2 fixed top-0 z-10">
       <Logo />
 
       <div className="flex flex-row items-center gap-4 absolute right-3">
-        {user ? (
-          <LogoutButton />
-        ) : (
-          <LoginButton />
-        )}
-                
+        <div className="collapse md:visible">
+          <AuthButton />
+        </div>
+
         <ModeToggle />
       </div>
     </div>
