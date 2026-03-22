@@ -4,7 +4,7 @@ import StandardButton from "@/components/buttons/standard-button";
 
 export default function LoginButton() {
   return (
-    <StandardButton link="/auth/login">
+    <StandardButton src="/auth/login">
       Log In
     </ StandardButton >
   );
