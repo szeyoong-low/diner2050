@@ -1,7 +1,12 @@
 import AuthButton from "@/components/auth0/AuthButton";
-import MenuItem from "@/components/cards/menu-item";
+import { loaders } from "@/data/loaders";
+import { MenuGrid } from "@/components/cards/menu-grid";
+import { validateApiResponse } from "@/lib/error-handler";
 
 export default async function Home() {
+  const data = await loaders.getMenuItems();
+  const menuItemsRetrieved = validateApiResponse(data, "summaries");
+
   return (
     <main className="min-h-screen flex items-center justify-center px-6 py-6 relative overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-150 md:w-225 h-75 md:h-112.5 bg-blue-600/20 rounded-full blur-3xl pointer-events-none" />
@@ -12,8 +17,7 @@ export default async function Home() {
           <AuthButton />
         </div>
 
-
-        <MenuItem />
+        <MenuGrid menuItems={menuItemsRetrieved} className="grow min-h-[calc(100vh-80px)]" />
       </div>
     </main>
   );

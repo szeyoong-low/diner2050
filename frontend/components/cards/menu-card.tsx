@@ -1,0 +1,53 @@
+import { TMenuItem } from "@/types";
+import Link from "next/link";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { StrapiImage } from "@/components/images/strapi-image";
+
+interface IMenuCardProps {
+  menuItem: TMenuItem;
+}
+
+export default function MenuCard({ menuItem }: Readonly<IMenuCardProps>) {
+  const { Name, Description, Price, MenuImage } = menuItem;
+
+  return (
+    <div className="relative w-full max-w-sm md:max-w-md">
+      <div className="bg-white/4 backdrop-blur-2xl border border-white/8 rounded-3xl shadow-2xl shadow-black/60 overflow-hidden">
+        <div className="h-px bg-linear-to-r from-transparent via-blue-500/60 to-transparent" />
+
+        <Link href="/">
+          <Card>
+            <div className="flex justify-center">
+              <div className="flex h-30 w-30 justify-center items-center">
+                <StrapiImage
+                  src={MenuImage.url}
+                  alt={ MenuImage.alternativeText || "No alternative text" }
+                  width={200}
+                  height={200}
+                />
+              </div>
+              
+            </div>
+
+            <div className="w-full h-px bg-slate-300 dark:bg-white/6" />
+            
+            <CardHeader className="text-center">
+              <CardTitle className="text-xl md:text-2xl font-semibold text-inherit tracking-[-0.02em]">
+                { Name || "Future burger"}
+              </CardTitle>
+              <p className="text-slate-400 text-sm md:text-[15px] mt-1.5">
+                RM { Price.toFixed(2) || 0.00 }
+              </p>
+            </CardHeader>
+
+            <CardContent>
+              <p className="text-slate-400 text-sm md:text-[15px] text-center leading-relaxed tracking-[-0.01em]">
+                  {Description.slice(0, 150) || "Lorem ipsum dolor sit amet, consectetur adipiscing elit." }
+              </p>
+            </CardContent>
+          </Card>
+        </Link>
+      </div>
+    </div>
+  );
+}
