@@ -442,7 +442,7 @@ export interface ApiMenuItemMenuItem extends Struct.CollectionTypeSchema {
   };
   attributes: {
     Category: Schema.Attribute.Enumeration<
-      ['Appetiser', 'Main', 'Dessert', 'Drink']
+      ['Appetisers', 'Mains', 'Desserts', 'Drinks']
     > &
       Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;

@@ -47,7 +47,7 @@ export default function ViewingMode({ menuItem }: { menuItem: TMenuItem }) {
     }
   }
 
-  const categories: string[] = ["Appetiser", "Dessert", "Drink", "Main"]
+  const categories: string[] = ["Appetisers", "Desserts", "Drinks", "Mains"]
 
   return (
     <div className="flex flex-col items-center justify-center gap-4 py-7">

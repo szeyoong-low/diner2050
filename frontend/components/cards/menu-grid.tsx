@@ -8,10 +8,10 @@ interface ISummariesGridProps {
 }
 
 const CATEGORY_ORDER: Record<string, number> = {
-  Appetiser: 0,
-  Main: 1,
-  Dessert: 2,
-  Drink: 3,
+  Appetisers: 0,
+  Mains: 1,
+  Desserts: 2,
+  Drinks: 3,
 };
 
 export function MenuGrid({ menuItems, className }: ISummariesGridProps) {

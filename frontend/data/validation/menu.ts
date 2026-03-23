@@ -10,7 +10,7 @@ export const UpdateFormSchema = z.object({
   Description: z
     .string(),
   Category: z
-    .enum(["Appetiser", "Main", "Dessert", "Drink"]),
+    .enum(["Appetisers", "Mains", "Desserts", "Drinks"]),
   Price: z
     .coerce
     .number()

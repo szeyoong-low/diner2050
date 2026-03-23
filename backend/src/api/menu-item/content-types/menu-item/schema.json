@@ -15,10 +15,10 @@
       "type": "enumeration",
       "required": true,
       "enum": [
-        "Appetiser",
-        "Main",
-        "Dessert",
-        "Drink"
+        "Appetisers",
+        "Mains",
+        "Desserts",
+        "Drinks"
       ]
     },
     "Name": {
