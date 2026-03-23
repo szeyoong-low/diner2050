@@ -11,6 +11,7 @@ export async function createAction(
 ): Promise<CreateUpdateFormState> {
   
   const fields = Object.fromEntries(formData);
+  console.log(fields)
   
   const validatedFields = CreateFormSchema.safeParse(fields);
 

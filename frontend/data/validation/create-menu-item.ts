@@ -2,9 +2,6 @@ import { categories } from "@/lib/constants";
 import { z } from "zod";
 
 export const CreateFormSchema = z.object({
-  documentId: z
-    .string()
-    .min(1, "Document ID is required"),
   Name: z
     .string()
     .min(1, "Name of menu item is required"),

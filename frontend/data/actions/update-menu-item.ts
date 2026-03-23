@@ -15,10 +15,7 @@ export async function updateAction(
 ): Promise<CreateUpdateFormState> {
   
   const rawFields = Object.fromEntries(formData);
-
-  // Normalize the file field
   const menuImage = formData.get("MenuImage");
-
   const fields = {
     ...rawFields,
     MenuImage:
