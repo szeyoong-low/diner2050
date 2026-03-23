@@ -15,7 +15,7 @@ export const CreateFormSchema = z.object({
   Price: z
     .coerce
     .number()
-    .min(0, "Price must be a positive number"),
+    .min(0.01, "Price must be a positive number"),
   MenuImage: z
     .instanceof(File)
     .refine((file) => file.size > 0, "Image is required")

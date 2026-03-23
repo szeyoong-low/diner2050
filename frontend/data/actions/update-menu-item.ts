@@ -1,12 +1,12 @@
 "use server"
 
 import { api } from "@/data/data-api";
-import { UpdateFormSchema } from "@/data/validation/update-menu-item";
 import { type CreateUpdateFormState } from "@/data/validation/";
 import { getStrapiURL } from "@/lib/utils";
 import { queryMenuItem } from "@/lib/constants";
 import { services } from "@/data/services";
 import { TMenuItem } from "@/types";
+import { UpdateFormSchema } from "@/data/validation/update-menu-item";
 import { z } from "zod";
 
 export async function updateAction(
@@ -66,7 +66,6 @@ export async function updateAction(
     const url = new URL(`/api/menu-items/${validatedFields.data.documentId}`, baseUrl);
     url.search = queryMenuItem;
     const currentData = await api.get<TMenuItem>(url.href)
-
     imageId = currentData.data?.MenuImage.id!;
   }
 

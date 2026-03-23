@@ -49,8 +49,6 @@ export default function CreateUpdateForm({
       toast.error(createUpdateFormState.message)
     } else if (createUpdateFormState?.success) {
       toast.success(createUpdateFormState.message)
-    } else {
-      toast.success("Success!")
     }
   }
 
@@ -74,12 +72,12 @@ export default function CreateUpdateForm({
             />
           </div>
           <p className="text-center">
-            Click on the image to replace it
+            Click to upload an image
           </p>
           <ZodErrors error={createUpdateFormState?.zodErrors?.MenuImage} />
         </div>
 
-        <div>
+        <div className="flex flex-col items-center">
           <h2 className="font-extrabold text-6xl text-center">
             <Input
               id="Name"
@@ -87,19 +85,20 @@ export default function CreateUpdateForm({
               type="text"
               placeholder="Name"
               defaultValue={createUpdateFormState?.data?.Name || menuItem?.Name || ""}
-              className="p-3 h-15 border border-white"
+              className="p-3 h-15 border-2 border-gray-950 dark:border-white block"
+              required
             />
           </h2>
           
           <ZodErrors error={createUpdateFormState?.zodErrors?.Name} />
         </div>
 
-        <div className="font-bold text-4xl text-center">
+        <div className="flex flex-col items-center font-bold text-4xl text-center">
           <Combobox items={categories} onInputValueChange={setCategoryInput}>
             <ComboboxInput
               showClear
               placeholder={createUpdateFormState?.data?.Category || menuItem?.Category || categoryInput}
-              className="p-3 h-15 border border-white"
+              className="p-3 h-15 border-2 border-gray-950 dark:border-white"
             />
             
             <ComboboxContent>
@@ -118,36 +117,42 @@ export default function CreateUpdateForm({
             name="Category"
             type="hidden"
             value={categoryInput}
+            required
           />
 
           <ZodErrors error={createUpdateFormState?.zodErrors?.Category} />
         </div>
 
-        <div className="flex flex-row align-middle gap-2">
-          <p className="text-zinc-500 dark:text-slate-400 text-md md:text-[20px] mt-1">RM</p>
+        <div className="flex flex-col items-center">
+          <div className="flex flex-row gap-2">
+            <p className="text-zinc-500 dark:text-slate-400 text-md md:text-[20px]">RM</p>
 
-          <Input
-           id="Price"
-           name="Price"
-           type="number"
-           placeholder={ menuItem?.Price.toFixed(2) || "0.00" }
-           defaultValue={menuItem?.Price}
-           className="border border-white"
-          />
+            <Input
+              id="Price"
+              name="Price"
+              type="number"
+              placeholder={ menuItem?.Price.toFixed(2) || "0.00" }
+              defaultValue={menuItem?.Price}
+              className="border-2 border-gray-950 dark:border-white"
+              required
+            />
+          </div>
+          
 
           <ZodErrors error={createUpdateFormState?.zodErrors?.Price} />
         </div>
 
         <div className="w-1/2 h-px bg-gray-950 dark:bg-white my-4" />
         
-        <div className="flex justify-center w-full">
+        <div className="flex flex-col items-center justify-center w-full">
           <p className="text-gray-950 dark:text-slate-400 text-md md:text-[20px] text-center leading-relaxed md:leading-10 w-full tracking-widest">
             <Textarea
               id="Description"
               name="Description"
-              placeholder={"Description"}
+              placeholder="Description"
               defaultValue={menuItem?.Description}
-              className="border border-white w-full min-h-30"
+              className="border-2 border-gray-950 dark:border-white w-full min-h-30 rounded-2xl"
+              required
             />
           </p>
           
