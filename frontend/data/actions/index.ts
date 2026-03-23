@@ -1,4 +1,6 @@
-import { deleteAction } from "@/data/actions/menu";
+import { deleteAction, updateAction } from "@/data/actions/menu";
 
 export const actions = {
-    deleteAction,}
+    deleteAction,
+    updateAction,
+}
