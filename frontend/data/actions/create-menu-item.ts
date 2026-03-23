@@ -1,12 +1,8 @@
 "use server"
 
-import { api } from "@/data/data-api";
-import { CreateUpdateFormSchema } from "@/data/validation/update-menu-item";
+import { CreateFormSchema } from "@/data/validation/create-menu-item";
 import { type CreateUpdateFormState } from "@/data/validation";
-import { getStrapiURL } from "@/lib/utils";
-import { queryMenuItem } from "@/lib/constants";
 import { services } from "@/data/services";
-import { TMenuItem } from "@/types";
 import { z } from "zod";
 
 export async function createAction(
@@ -14,20 +10,9 @@ export async function createAction(
   formData: FormData
 ): Promise<CreateUpdateFormState> {
   
-  const rawFields = Object.fromEntries(formData);
-
-  // Normalize the file field
-  const menuImage = formData.get("MenuImage");
-
-  const fields = {
-    ...rawFields,
-    MenuImage:
-      menuImage instanceof File && menuImage.size > 0
-        ? menuImage
-        : undefined,
-  };
+  const fields = Object.fromEntries(formData);
   
-  const validatedFields = CreateUpdateFormSchema.safeParse(fields);
+  const validatedFields = CreateFormSchema.safeParse(fields);
 
   if (!validatedFields.success) {
     const flattenedErrors = z.flattenError(validatedFields.error);
@@ -43,35 +28,23 @@ export async function createAction(
     };
   }
 
-  var imageId;
+  const fileUploadResponse = await services.fileUploadService(
+    validatedFields.data.MenuImage
+  );
 
-  if (validatedFields.data.MenuImage) {
-    const fileUploadResponse = await services.fileUploadService(
-      validatedFields.data.MenuImage
-    );
-
-    if (!fileUploadResponse.success || !fileUploadResponse.data) {
-      return {
-        success: false,
-        message: "Failed to upload image",
-        strapiErrors: fileUploadResponse.error,
-        zodErrors: null,
-        data: prevState.data,
-      };
-    }
-
-    imageId = fileUploadResponse.data[0].id;
-  } else {
-    const baseUrl = getStrapiURL();
-    const url = new URL(`/api/menu-items/${validatedFields.data.documentId}`, baseUrl);
-    url.search = queryMenuItem;
-    const currentData = await api.get<TMenuItem>(url.href)
-
-    imageId = currentData.data?.MenuImage.id!;
+  if (!fileUploadResponse.success || !fileUploadResponse.data) {
+    return {
+      success: false,
+      message: "Failed to upload image",
+      strapiErrors: fileUploadResponse.error,
+      zodErrors: null,
+      data: prevState.data,
+    };
   }
 
-  const responseData = await services.updateService(
-    validatedFields.data.documentId,
+  const imageId = fileUploadResponse.data[0].id;
+
+  const responseData = await services.createService(
     {
       Name: validatedFields.data.Name,
       Description: validatedFields.data.Description,

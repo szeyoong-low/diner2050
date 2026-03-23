@@ -15,17 +15,16 @@ type TUpdate = {
 const baseUrl = getStrapiURL();
 
 export async function createService(
-  documentId: string,
   menuData: TUpdate
 ): Promise<TStrapiResponse<TMenuItem>> {
   const session = await auth0.getSession();
-  if (!session) throw new Error("You must be logged in to update menu items.");
-  const url = new URL(`/api/menu-items/${documentId}`, baseUrl);
+  if (!session) throw new Error("You must be logged in to create menu items.");
+  const url = new URL("/api/menu-items/", baseUrl);
   url.search = queryMenuItem;
 
   const payload = { data: menuData }
 
-  const result = await api.put<TMenuItem, typeof payload>(
+  const result = await api.post<TMenuItem, typeof payload>(
     url.href,
     payload,
   );

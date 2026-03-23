@@ -1,7 +1,7 @@
 "use server"
 
 import { api } from "@/data/data-api";
-import { CreateUpdateFormSchema } from "@/data/validation/update-menu-item";
+import { UpdateFormSchema } from "@/data/validation/update-menu-item";
 import { type CreateUpdateFormState } from "@/data/validation/";
 import { getStrapiURL } from "@/lib/utils";
 import { queryMenuItem } from "@/lib/constants";
@@ -27,7 +27,7 @@ export async function updateAction(
         : undefined,
   };
   
-  const validatedFields = CreateUpdateFormSchema.safeParse(fields);
+  const validatedFields = UpdateFormSchema.safeParse(fields);
 
   if (!validatedFields.success) {
     const flattenedErrors = z.flattenError(validatedFields.error);

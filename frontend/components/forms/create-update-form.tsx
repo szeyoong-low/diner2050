@@ -1,12 +1,14 @@
+"use client"
+
+import { categories } from "@/lib/constants";
 import {
   Combobox,
   ComboboxContent,
-  ComboboxEmpty,
   ComboboxInput,
   ComboboxItem,
   ComboboxList
 } from "@/components/ui/combobox";
-import { CreateUpdateFormState } from "@/data/validation/delete-menu-items";
+import { CreateUpdateFormState } from "@/data/validation";
 import DeleteButton from "@/components/buttons/delete-button";
 import ImagePicker from "@/components/forms/image-picker";
 import { Input } from "@/components/ui/input";
@@ -38,9 +40,7 @@ export default function CreateUpdateForm({
       INITIAL_UPDATE_STATE
     );
   
-  const [categoryInput, setCategoryInput] = useState(menuItem?.Category)
-  
-  const categories: string[] = ["Appetisers", "Desserts", "Drinks", "Mains"]
+  const [categoryInput, setCategoryInput] = useState(menuItem?.Category || categories[0])
   
   function renderToast() {
     if (createUpdateFormState?.strapiErrors) {
@@ -98,12 +98,11 @@ export default function CreateUpdateForm({
           <Combobox items={categories} onInputValueChange={setCategoryInput}>
             <ComboboxInput
               showClear
-              placeholder={createUpdateFormState?.data?.Category || menuItem?.Category || ""}
+              placeholder={createUpdateFormState?.data?.Category || menuItem?.Category || categoryInput}
               className="p-3 h-15 border border-white"
             />
             
             <ComboboxContent>
-              <ComboboxEmpty>No items found.</ComboboxEmpty>
               <ComboboxList>
                 {(item) => (
                   <ComboboxItem key={item} value={item}>

@@ -1,6 +1,7 @@
+import { categories } from "@/lib/constants";
 import { z } from "zod";
 
-export const CreateUpdateFormSchema = z.object({
+export const UpdateFormSchema = z.object({
   documentId: z
     .string()
     .min(1, "Document ID is required"),
@@ -10,7 +11,7 @@ export const CreateUpdateFormSchema = z.object({
   Description: z
     .string(),
   Category: z
-    .enum(["Appetisers", "Mains", "Desserts", "Drinks"]),
+    .enum(categories),
   Price: z
     .coerce
     .number()

@@ -8,3 +8,5 @@ export const queryMenuItem = qs.stringify({
     },
   }
 });
+
+export const categories: string[] = ["Appetisers", "Desserts", "Drinks", "Mains"]

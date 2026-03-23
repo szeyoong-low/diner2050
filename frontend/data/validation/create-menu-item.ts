@@ -1,3 +1,4 @@
+import { categories } from "@/lib/constants";
 import { z } from "zod";
 
 export const CreateFormSchema = z.object({
@@ -10,7 +11,7 @@ export const CreateFormSchema = z.object({
   Description: z
     .string(),
   Category: z
-    .enum(["Appetisers", "Mains", "Desserts", "Drinks"]),
+    .enum(categories),
   Price: z
     .coerce
     .number()
