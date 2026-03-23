@@ -49,6 +49,8 @@ export default function CreateUpdateForm({
       toast.error(createUpdateFormState.message)
     } else if (createUpdateFormState?.success) {
       toast.success(createUpdateFormState.message)
+    } else {
+      toast.success("Success!")
     }
   }
 
