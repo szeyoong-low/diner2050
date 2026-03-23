@@ -1,13 +1,12 @@
-import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-interface StandardButtonProps {
+interface IStandardButtonProps {
   src: string,
   className?: string,
   children?: React.ReactNode,
 }
 
-export default function StandardButton({src, className, children}: Readonly<StandardButtonProps>) {
+export default function StandardButton({src, className, children}: Readonly<IStandardButtonProps>) {
   return (
     <a
       href={src}

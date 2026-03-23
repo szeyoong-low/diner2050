@@ -4,7 +4,7 @@ export const DeleteFormSchema = z.object({
   documentId: z.string().min(1, "Document ID is required"),
 });
 
-export type DeleteFormState = {
+export type TDeleteFormState = {
   success?: boolean;
   message?: string;
   data?: {

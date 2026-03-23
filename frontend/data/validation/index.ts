@@ -1,4 +1,4 @@
-export type CreateUpdateFormState = {
+export type TCreateUpdateFormState = {
   success?: boolean;
   message?: string;
   data?: {

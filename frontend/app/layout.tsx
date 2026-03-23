@@ -1,4 +1,4 @@
-import "./globals.css";
+import "@/app/globals.css";
 import AppSidebar from "@/components/nav/app-sidebar";
 import { Auth0Provider } from "@auth0/nextjs-auth0/client";
 import Header from "@/components/global/header";

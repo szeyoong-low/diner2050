@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import MenuCard from "./menu-card";
+import MenuCard from "@/components/cards/menu-card";
 import { TMenuItem } from "@/types";
 
 interface ISummariesGridProps {

@@ -5,13 +5,13 @@ import { notFound } from "next/navigation";
 import { validateApiResponse } from "@/lib/error-handler";
 import ViewingMode from "@/components/views/viewing-mode";
 
-interface SingleMenuItemProps {
+interface ISingleMenuItemProps {
   params: {
     menuId: string;
   };
 }
 
-export default async function SingleMenuItem({ params }: SingleMenuItemProps) {
+export default async function SingleMenuItem({ params }: ISingleMenuItemProps) {
   const { menuId } = await params;
   if (!menuId) notFound();
   const menuItem = await loaders.getMenuItemByDocumentId(menuId);

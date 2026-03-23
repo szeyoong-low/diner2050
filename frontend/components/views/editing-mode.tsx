@@ -1,7 +1,7 @@
 "use client"
 
 import { actions } from "@/data/actions";
-import CreateUpdateForm from "../forms/create-update-form";
+import CreateUpdateForm from "@/components/forms/create-update-form";
 import { TMenuItem } from "@/types";
 
 export default function ViewingMode({ menuItem }: { menuItem: TMenuItem }) {

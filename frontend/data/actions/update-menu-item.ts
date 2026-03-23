@@ -1,7 +1,7 @@
 "use server"
 
 import { api } from "@/data/data-api";
-import { type CreateUpdateFormState } from "@/data/validation/";
+import { type TCreateUpdateFormState } from "@/data/validation/";
 import { getStrapiURL } from "@/lib/utils";
 import { queryMenuItem } from "@/lib/constants";
 import { services } from "@/data/services";
@@ -10,9 +10,9 @@ import { UpdateFormSchema } from "@/data/validation/update-menu-item";
 import { z } from "zod";
 
 export async function updateAction(
-  prevState: CreateUpdateFormState,
+  prevState: TCreateUpdateFormState,
   formData: FormData
-): Promise<CreateUpdateFormState> {
+): Promise<TCreateUpdateFormState> {
   
   const rawFields = Object.fromEntries(formData);
   const menuImage = formData.get("MenuImage");

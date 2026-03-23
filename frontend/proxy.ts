@@ -1,4 +1,4 @@
-import { auth0 } from "./lib/auth0";
+import { auth0 } from "@/lib/auth0";
 import { NextResponse, type NextRequest } from "next/server";
 
 const protectedRoutes: string[] = ["/create"];

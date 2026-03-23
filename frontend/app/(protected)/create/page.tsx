@@ -1,5 +1,5 @@
-import CreateUpdateForm from "@/components/forms/create-update-form";
 import { actions } from "@/data/actions"
+import CreateUpdateForm from "@/components/forms/create-update-form";
 
 export default function Create() {
   return (

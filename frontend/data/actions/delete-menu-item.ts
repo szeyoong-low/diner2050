@@ -1,15 +1,15 @@
 "use server"
 
-import { type DeleteFormState, DeleteFormSchema } from "@/data/validation/delete-menu-items";
+import { type TDeleteFormState, DeleteFormSchema } from "@/data/validation/delete-menu-items";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { services } from "@/data/services";
 import { z } from "zod";
 
 export async function deleteAction(
-  prevState: DeleteFormState,
+  prevState: TDeleteFormState,
   formData: FormData
-): Promise<DeleteFormState> {
+): Promise<TDeleteFormState> {
   const fields = Object.fromEntries(formData);
   const validatedFields = DeleteFormSchema.safeParse(fields);
 

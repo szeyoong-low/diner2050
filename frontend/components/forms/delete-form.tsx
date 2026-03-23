@@ -1,23 +1,23 @@
 "use client"
 
 import { actions } from "@/data/actions";
-import DeleteButton from "../buttons/delete-button";
-import { type DeleteFormState } from "@/data/validation/delete-menu-items";
+import DeleteButton from "@/components/buttons/delete-button";
+import { type TDeleteFormState } from "@/data/validation/delete-menu-items";
 import { toast } from "sonner";
 import { useActionState } from "react";
 
-const INITIAL_DELETE_STATE: DeleteFormState = {
+const INITIAL_DELETE_STATE: TDeleteFormState = {
   success: false,
   message: undefined,
   strapiErrors: null,
   zodErrors: null,
 };
 
-interface DeleteFormProps {
+interface IDeleteFormProps {
     documentId: string;
 }
 
-export default function DeleteForm({documentId}: Readonly<DeleteFormProps>) {
+export default function DeleteForm({documentId}: Readonly<IDeleteFormProps>) {
   const [deleteFormState, deleteFormAction] = useActionState(
     actions.deleteAction,
     INITIAL_DELETE_STATE

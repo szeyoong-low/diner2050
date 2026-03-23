@@ -3,7 +3,6 @@ import { api } from "@/data/data-api";
 import { getStrapiURL } from "@/lib/utils";
 import { queryMenuItem } from "@/lib/constants";
 
-
 const baseUrl = getStrapiURL();
 
 async function getMenuItems(): Promise<TStrapiResponse<TMenuItem[]>> {

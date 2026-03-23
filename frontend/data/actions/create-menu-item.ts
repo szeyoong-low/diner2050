@@ -1,14 +1,14 @@
 "use server"
 
 import { CreateFormSchema } from "@/data/validation/create-menu-item";
-import { type CreateUpdateFormState } from "@/data/validation";
+import { type TCreateUpdateFormState } from "@/data/validation";
 import { services } from "@/data/services";
 import { z } from "zod";
 
 export async function createAction(
-  prevState: CreateUpdateFormState,
+  prevState: TCreateUpdateFormState,
   formData: FormData
-): Promise<CreateUpdateFormState> {
+): Promise<TCreateUpdateFormState> {
   
   const fields = Object.fromEntries(formData);  
   const validatedFields = CreateFormSchema.safeParse(fields);

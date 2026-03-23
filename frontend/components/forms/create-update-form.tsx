@@ -8,7 +8,7 @@ import {
   ComboboxItem,
   ComboboxList
 } from "@/components/ui/combobox";
-import { CreateUpdateFormState } from "@/data/validation";
+import { TCreateUpdateFormState } from "@/data/validation";
 import DeleteForm from "@/components/forms/delete-form";
 import ImagePicker from "@/components/forms/image-picker";
 import { Input } from "@/components/ui/input";
@@ -20,22 +20,22 @@ import { useActionState, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ZodErrors } from "@/components/validation/zod-errors";
 
-const INITIAL_UPDATE_STATE: CreateUpdateFormState = {
+const INITIAL_UPDATE_STATE: TCreateUpdateFormState = {
   success: false,
   message: undefined,
   strapiErrors: null,
   zodErrors: null,
 };
 
-interface CreateUpdateFormProps {
+interface ICreateUpdateFormProps {
   menuItem?: TMenuItem;
-  formAction: ((formState: CreateUpdateFormState, formData: FormData) => Promise<CreateUpdateFormState>);
+  formAction: ((formState: TCreateUpdateFormState, formData: FormData) => Promise<TCreateUpdateFormState>);
 }
 
 export default function CreateUpdateForm({
   menuItem,
   formAction,
-}: Readonly<CreateUpdateFormProps>) {
+}: Readonly<ICreateUpdateFormProps>) {
   const [createUpdateFormState, createUpdateFormAction] = useActionState(
       formAction,
       INITIAL_UPDATE_STATE

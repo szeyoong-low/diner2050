@@ -4,7 +4,7 @@ import {
   SidebarHeader,
 } from "@/components/ui/sidebar"
 import { Grape, Hamburger, IceCream, Milk } from "lucide-react"
-import SidebarLink from "./sidebar-link"
+import SidebarLink from "@/components/nav/sidebar-link"
 
 export default function AppSidebar() {
   return (
