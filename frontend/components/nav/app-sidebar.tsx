@@ -13,19 +13,19 @@ export default function AppSidebar() {
         <h3 className="font-bold text-2xl">Menu</h3>
       </SidebarHeader>
       <SidebarContent>
-        <SidebarLink href="/#appetizer">
+        <SidebarLink href="/#appetizers">
           <Grape />
           <p>Appetisers</p>
         </SidebarLink>
-        <SidebarLink href="/#main">
+        <SidebarLink href="/#mains">
           <Hamburger />
           <p>Mains</p>
         </SidebarLink>
-        <SidebarLink href="/#dessert">
+        <SidebarLink href="/#desserts">
           <IceCream />
           <p>Desserts</p>
         </SidebarLink>
-        <SidebarLink href="/#drink">
+        <SidebarLink href="/#drinks">
           <Milk />
           <p>Drinks</p>
         </SidebarLink>
