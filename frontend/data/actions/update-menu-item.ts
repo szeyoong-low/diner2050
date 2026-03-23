@@ -105,7 +105,7 @@ export async function updateAction(
 
   return {
     success: true,
-    message: "Successfully updated menu item.",
+    message: `Successfully updated ${responseData.data?.Name}!`,
     strapiErrors: null,
     zodErrors: null,
     data: {

@@ -16,7 +16,8 @@ import SubmitButton from "@/components/buttons/submit-button";
 import { Textarea } from "@/components/ui/textarea";
 import { TMenuItem } from "@/types";
 import { toast } from "sonner";
-import { useActionState, useState } from "react";
+import { useActionState, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { ZodErrors } from "@/components/validation/zod-errors";
 
 const INITIAL_UPDATE_STATE: CreateUpdateFormState = {
@@ -41,26 +42,28 @@ export default function CreateUpdateForm({
     );
   
   const [categoryInput, setCategoryInput] = useState(menuItem?.Category || categories[0])
+  const router = useRouter();
   
-  function renderToast() {
+  useEffect(() => {
     if (createUpdateFormState?.strapiErrors) {
       toast.dismiss()
       toast.error(createUpdateFormState.strapiErrors.message)
-    } else if (createUpdateFormState?.message && !createUpdateFormState?.success) {
+    } else if (!createUpdateFormState?.success && createUpdateFormState?.message) {
       toast.dismiss()
       toast.error(createUpdateFormState.message)
     } else if (createUpdateFormState?.success) {
       toast.dismiss()
       toast.success(createUpdateFormState.message)
+      router.push(`/${createUpdateFormState.data?.documentId}`)
     }
-  }
+  }, [createUpdateFormState])
 
   return (
     <div className="flex flex-col items-center justify-center gap-4 py-7">
       <form
         className="flex flex-col items-center justify-center gap-4 w-2/3"
         action={createUpdateFormAction}
-        onSubmit={renderToast}
+        onSubmit={() => toast.loading("Working on it...")}
       >
 
         <input type="hidden" name="documentId" value={menuItem?.documentId} />

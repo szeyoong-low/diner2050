@@ -4,16 +4,13 @@ import { CreateFormSchema } from "@/data/validation/create-menu-item";
 import { type CreateUpdateFormState } from "@/data/validation";
 import { services } from "@/data/services";
 import { z } from "zod";
-import { redirect } from "next/navigation";
 
 export async function createAction(
   prevState: CreateUpdateFormState,
   formData: FormData
 ): Promise<CreateUpdateFormState> {
   
-  const fields = Object.fromEntries(formData);
-  console.log(fields)
-  
+  const fields = Object.fromEntries(formData);  
   const validatedFields = CreateFormSchema.safeParse(fields);
 
   if (!validatedFields.success) {
@@ -82,5 +79,15 @@ export async function createAction(
     };
   }
 
-  redirect(`/${responseData.data?.documentId}`)
+  return {
+    success: true,
+    message: `Successfully created ${responseData.data?.Name}!`,
+    strapiErrors: responseData.error,
+    zodErrors: null,
+    data: {
+      ...prevState.data,
+      ...fields,
+      documentId: responseData.data?.documentId
+    },
+  };
 }
