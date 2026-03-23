@@ -1,17 +1,17 @@
 "use server"
 
-import { api } from "../data-api";
+import { api } from "@/data/data-api";
 import {
   type DeleteFormState,
   type UpdateFormState,
   DeleteFormSchema,
   UpdateFormSchema,
-} from "../validation/menu";
+} from "@/data/validation/menu";
 import { getStrapiURL } from "@/lib/utils";
 import qs from "qs";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
-import { services } from "../services";
+import { services } from "@/data/services";
 import { TMenuItem } from "@/types";
 import { z } from "zod";
 

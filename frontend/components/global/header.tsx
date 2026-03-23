@@ -1,5 +1,5 @@
-import AuthButton from "../auth0/AuthButton";
-import Logo from "../global/logo";
+import AuthButton from "@/components/auth0/AuthButton";
+import Logo from "@/components/global/logo";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 
 export default async function Header() {

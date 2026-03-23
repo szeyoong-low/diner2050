@@ -1,7 +1,7 @@
 "use client"
 
 import { actions } from "@/data/actions";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { type DeleteFormState } from "@/data/validation/menu";
 import { toast } from "sonner";
 import { useActionState } from "react";
