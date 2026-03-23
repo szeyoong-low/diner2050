@@ -1,16 +1,9 @@
 "use server"
 
 import { api } from "@/data/data-api";
-import {
-  type DeleteFormState,
-  type CreateUpdateFormState,
-  DeleteFormSchema,
-  CreateUpdateFormSchema,
-} from "@/data/validation/menu";
+import { type CreateUpdateFormState, CreateUpdateFormSchema } from "@/data/validation/menu";
 import { getStrapiURL } from "@/lib/utils";
-import qs from "qs";
-import { redirect } from "next/navigation";
-import { revalidatePath } from "next/cache";
+import { queryMenuItem } from "@/lib/constants";
 import { services } from "@/data/services";
 import { TMenuItem } from "@/types";
 import { z } from "zod";
@@ -68,12 +61,9 @@ export async function updateAction(
 
     imageId = fileUploadResponse.data[0].id;
   } else {
-    const query = qs.stringify({
-      populate: "*",
-    });
     const baseUrl = getStrapiURL();
     const url = new URL(`/api/menu-items/${validatedFields.data.documentId}`, baseUrl);
-    url.search = query;
+    url.search = queryMenuItem;
     const currentData = await api.get<TMenuItem>(url.href)
 
     imageId = currentData.data?.MenuImage.id!;
@@ -126,62 +116,4 @@ export async function updateAction(
       ...fields,
     },
   };
-}
-
-export async function deleteAction(
-  prevState: DeleteFormState,
-  formData: FormData
-): Promise<DeleteFormState> {
-  const fields = Object.fromEntries(formData);
-  const validatedFields = DeleteFormSchema.safeParse(fields);
-
-  if (!validatedFields.success) {
-    const flattenedErrors = z.flattenError(validatedFields.error);
-    return {
-      success: false,
-      message: "Validation failed.",
-      strapiErrors: null,
-      zodErrors: flattenedErrors.fieldErrors,
-      data: {
-        ...prevState.data,
-        ...fields,
-      },
-    };
-  }
-
-  try {
-    const responseData = await services.deleteService(
-      validatedFields.data.documentId
-    );
-
-    if (responseData.error) {
-      return {
-        success: false,
-        message: "Failed to delete.",
-        strapiErrors: responseData.error,
-        zodErrors: null,
-        data: {
-          ...prevState.data,
-          ...fields,
-        },
-      };
-    }
-
-    // If we get here, deletion was successful
-    revalidatePath("/");
-  } catch (error) {
-    return {
-      success: false,
-      message: "Failed to delete. Please try again.",
-      strapiErrors: null,
-      zodErrors: null,
-      data: {
-        ...prevState.data,
-        ...fields,
-      },
-    };
-  }
-
-  // Redirect after successful deletion (outside try/catch)
-  redirect("/");
 }
