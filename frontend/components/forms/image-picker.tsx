@@ -2,13 +2,15 @@
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { StrapiImage } from "@/components/images/strapi-image";
+import { useFormStatus } from "react-dom";
 
 interface ImagePickerProps {
   id: string;
   name: string;
   label: string;
+  retain: boolean;
   showCard?: boolean;
   defaultValue?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -63,10 +65,18 @@ export default function ImagePicker({
   id,
   name,
   label,
+  retain,
   defaultValue,
 }: Readonly<ImagePickerProps>) {
   const fileInput = useRef<HTMLInputElement>(null);
   const [dataUrl, setDataUrl] = useState<string | null>(defaultValue ?? null);
+  const { pending } = useFormStatus();
+
+  useEffect(() => {
+    if (pending && !retain) {
+      setDataUrl(null);
+    }
+  }, [pending])
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];

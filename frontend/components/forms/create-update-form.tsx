@@ -74,6 +74,7 @@ export default function CreateUpdateForm({
               id="MenuImage"
               name="MenuImage"
               label="MenuImage"
+              retain={!!menuItem}
               defaultValue={menuItem?.MenuImage.url || ""}
             />
           </div>
