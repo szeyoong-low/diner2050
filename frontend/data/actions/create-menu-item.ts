@@ -4,6 +4,7 @@ import { CreateFormSchema } from "@/data/validation/create-menu-item";
 import { type CreateUpdateFormState } from "@/data/validation";
 import { services } from "@/data/services";
 import { z } from "zod";
+import { redirect } from "next/navigation";
 
 export async function createAction(
   prevState: CreateUpdateFormState,
@@ -81,14 +82,5 @@ export async function createAction(
     };
   }
 
-  return {
-    success: true,
-    message: "Successfully updated menu item.",
-    strapiErrors: null,
-    zodErrors: null,
-    data: {
-      ...prevState.data,
-      ...fields,
-    },
-  };
+  redirect(`/${responseData.data?.documentId}`)
 }

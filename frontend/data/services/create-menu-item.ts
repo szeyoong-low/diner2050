@@ -23,9 +23,7 @@ export async function createService(
   url.search = queryMenuItem;
 
   const payload = { data: menuData }
-  console.log(payload)
-  console.log("Hi")
-
+  
   const result = await api.post<TMenuItem, typeof payload>(
     url.href,
     payload,
