@@ -1,7 +1,8 @@
 "use server"
 
 import { api } from "@/data/data-api";
-import { type CreateUpdateFormState, CreateUpdateFormSchema } from "@/data/validation/menu";
+import { CreateUpdateFormSchema } from "@/data/validation/update-menu-item";
+import { type CreateUpdateFormState } from "@/data/validation/";
 import { getStrapiURL } from "@/lib/utils";
 import { queryMenuItem } from "@/lib/constants";
 import { services } from "@/data/services";

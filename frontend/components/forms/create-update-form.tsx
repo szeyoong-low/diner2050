@@ -6,7 +6,7 @@ import {
   ComboboxItem,
   ComboboxList
 } from "@/components/ui/combobox";
-import { CreateUpdateFormState } from "@/data/validation/menu";
+import { CreateUpdateFormState } from "@/data/validation/delete-menu-items";
 import DeleteButton from "@/components/buttons/delete-button";
 import ImagePicker from "@/components/forms/image-picker";
 import { Input } from "@/components/ui/input";
