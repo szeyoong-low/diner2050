@@ -44,10 +44,13 @@ export default function CreateUpdateForm({
   
   function renderToast() {
     if (createUpdateFormState?.strapiErrors) {
+      toast.dismiss()
       toast.error(createUpdateFormState.strapiErrors.message)
     } else if (createUpdateFormState?.message && !createUpdateFormState?.success) {
+      toast.dismiss()
       toast.error(createUpdateFormState.message)
     } else if (createUpdateFormState?.success) {
+      toast.dismiss()
       toast.success(createUpdateFormState.message)
     }
   }

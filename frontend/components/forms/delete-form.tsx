@@ -1,11 +1,10 @@
 "use client"
 
 import { actions } from "@/data/actions";
+import DeleteButton from "../buttons/delete-button";
 import { type DeleteFormState } from "@/data/validation/delete-menu-items";
 import { toast } from "sonner";
 import { useActionState } from "react";
-import { useFormStatus } from "react-dom";
-import DeleteButton from "../buttons/delete-button";
 
 const INITIAL_DELETE_STATE: DeleteFormState = {
   success: false,
@@ -23,24 +22,11 @@ export default function DeleteForm({documentId}: Readonly<DeleteFormProps>) {
     actions.deleteAction,
     INITIAL_DELETE_STATE
   );
-  const status = useFormStatus();
-
-  function renderToast() {
-    if (deleteFormState?.strapiErrors) {
-      toast.error(deleteFormState.strapiErrors.message)
-    } else if (deleteFormState?.message && !deleteFormState?.success) {
-      toast.error(deleteFormState.message)
-    } else {
-      toast.success("Successfully deleted!")
-    }
-  }
   
   return(
-    <div>
-      <form action={deleteFormAction} onSubmit={renderToast}>
+      <form action={deleteFormAction} onSubmit={() => toast.success("Deleted menu item.")}>
         <input type="hidden" name="documentId" value={documentId} />
-        <DeleteButton formStatus={status} />
+        <DeleteButton />
       </form>
-    </div>
   );
 }
