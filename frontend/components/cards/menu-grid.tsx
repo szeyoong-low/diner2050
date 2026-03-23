@@ -7,12 +7,21 @@ interface ISummariesGridProps {
   className?: string;
 }
 
+const CATEGORY_ORDER: Record<string, number> = {
+  Appetiser: 0,
+  Main: 1,
+  Dessert: 2,
+  Drink: 3,
+};
+
 export function MenuGrid({ menuItems, className }: ISummariesGridProps) {
   const menuByCategory = Map.groupBy(menuItems, (item) => item.Category);
   
   return (
     <div className={cn("flex flex-col gap-6 px-7", className)}>
-      {[...menuByCategory.entries()].sort().map(([category, items]) => (
+      {[...menuByCategory.entries()]
+      .sort((a, b) => CATEGORY_ORDER[a[0]] - CATEGORY_ORDER[b[0]])
+      .map(([category, items]) => (
         <section key={category}>
           <h2 className="font-extrabold mb-3 text-2xl" id={category.toLowerCase()}>
             {category}
