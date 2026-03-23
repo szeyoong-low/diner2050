@@ -4,7 +4,7 @@ import { Auth0Provider } from "@auth0/nextjs-auth0/client";
 import Header from "@/components/global/header";
 import { type Metadata } from "next";
 import { Michroma } from "next/font/google";
-import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -44,7 +44,6 @@ export default function RootLayout({
                 <Toaster position="bottom-center" />
                 <Header />
                 <div className="relative">
-                  <SidebarTrigger className="absolute top-0 left-0" />
                   {children}
                 </div>
               </SidebarInset>
