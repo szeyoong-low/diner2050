@@ -17,12 +17,15 @@ export const UpdateFormSchema = z.object({
     .min(0, "Price must be a positive number"),
   MenuImage: z
     .instanceof(File)
-    .refine((file) => file.size > 0, "Image is required")
-    .refine((file) => file.size <= 5000000, "Image must be less than 5MB")
+    .optional()
+    .refine((file) => !file || file.size > 0, "Image is required")
+    .refine((file) => !file || file.size <= 5000000, "Image must be less than 5MB")
     .refine(
-      (file) => ["image/jpeg", "image/png", "image/webp"].includes(file.type),
+      (file) =>
+        !file ||
+        ["image/jpeg", "image/png", "image/webp"].includes(file.type),
       "Image must be JPEG, PNG, or WebP format"
-    ),
+    )
 });
 
 export type UpdateFormValues = z.infer<typeof UpdateFormSchema>;

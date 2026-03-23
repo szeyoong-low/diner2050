@@ -1,14 +1,18 @@
 "use server"
 
+import { api } from "../data-api";
 import {
   type DeleteFormState,
   type UpdateFormState,
   DeleteFormSchema,
   UpdateFormSchema,
 } from "../validation/menu";
+import { getStrapiURL } from "@/lib/utils";
+import qs from "qs";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { services } from "../services";
+import { TMenuItem } from "@/types";
 import { z } from "zod";
 
 export async function updateAction(
@@ -16,19 +20,19 @@ export async function updateAction(
   formData: FormData
 ): Promise<UpdateFormState> {
   
-  const fields = Object.fromEntries(formData);
-  const image = formData.get("MenuImage") as File;
+  const rawFields = Object.fromEntries(formData);
 
-  if (!image || image.size === 0) {
-    return {
-      success: false,
-      message: "No image provided",
-      strapiErrors: null,
-      zodErrors: { MenuImage: ["Image is required"] },
-      data: prevState.data,
-    };
-  }
+  // Normalize the file field
+  const menuImage = formData.get("MenuImage");
 
+  const fields = {
+    ...rawFields,
+    MenuImage:
+      menuImage instanceof File && menuImage.size > 0
+        ? menuImage
+        : undefined,
+  };
+  
   const validatedFields = UpdateFormSchema.safeParse(fields);
 
   if (!validatedFields.success) {
@@ -45,21 +49,35 @@ export async function updateAction(
     };
   }
 
-  const fileUploadResponse = await services.fileUploadService(
-    validatedFields.data.MenuImage
-  );
+  var imageId;
 
-  if (!fileUploadResponse.success || !fileUploadResponse.data) {
-    return {
-      success: false,
-      message: "Failed to upload image",
-      strapiErrors: fileUploadResponse.error,
-      zodErrors: null,
-      data: prevState.data,
-    };
+  if (validatedFields.data.MenuImage) {
+    const fileUploadResponse = await services.fileUploadService(
+      validatedFields.data.MenuImage
+    );
+
+    if (!fileUploadResponse.success || !fileUploadResponse.data) {
+      return {
+        success: false,
+        message: "Failed to upload image",
+        strapiErrors: fileUploadResponse.error,
+        zodErrors: null,
+        data: prevState.data,
+      };
+    }
+
+    imageId = fileUploadResponse.data[0].id;
+  } else {
+    const query = qs.stringify({
+      populate: "*",
+    });
+    const baseUrl = getStrapiURL();
+    const url = new URL(`/api/menu-items/${validatedFields.data.documentId}`, baseUrl);
+    url.search = query;
+    const currentData = await api.get<TMenuItem>(url.href)
+
+    imageId = currentData.data?.MenuImage.id!;
   }
-
-  const uploadedImageId = fileUploadResponse.data[0].id;
 
   const responseData = await services.updateService(
     validatedFields.data.documentId,
@@ -68,7 +86,7 @@ export async function updateAction(
       Description: validatedFields.data.Description,
       Category: validatedFields.data.Category,
       Price: validatedFields.data.Price,
-      MenuImage: uploadedImageId
+      MenuImage: imageId,
     }
   );
 
