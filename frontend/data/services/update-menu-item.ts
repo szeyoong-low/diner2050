@@ -1,7 +1,7 @@
 import { api } from "@/data/data-api";
 import { auth0 } from "@/lib/auth0";
 import { getStrapiURL } from "@/lib/utils";
-import qs from "qs";
+import { queryMenuItem } from "@/lib/constants";
 import type { TStrapiResponse, TMenuItem } from "@/types";
 
 type TUpdate = {
@@ -20,12 +20,8 @@ export async function updateService(
 ): Promise<TStrapiResponse<TMenuItem>> {
   const session = await auth0.getSession();
   if (!session) throw new Error("You must be logged in to update menu items.");
-
-  const query = qs.stringify({
-    populate: "*",
-  });
   const url = new URL(`/api/menu-items/${documentId}`, baseUrl);
-  url.search = query;
+  url.search = queryMenuItem;
 
   const payload = { data: menuData }
 
