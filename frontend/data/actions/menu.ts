@@ -3,9 +3,9 @@
 import { api } from "@/data/data-api";
 import {
   type DeleteFormState,
-  type UpdateFormState,
+  type CreateUpdateFormState,
   DeleteFormSchema,
-  UpdateFormSchema,
+  CreateUpdateFormSchema,
 } from "@/data/validation/menu";
 import { getStrapiURL } from "@/lib/utils";
 import qs from "qs";
@@ -16,9 +16,9 @@ import { TMenuItem } from "@/types";
 import { z } from "zod";
 
 export async function updateAction(
-  prevState: UpdateFormState,
+  prevState: CreateUpdateFormState,
   formData: FormData
-): Promise<UpdateFormState> {
+): Promise<CreateUpdateFormState> {
   
   const rawFields = Object.fromEntries(formData);
 
@@ -33,7 +33,7 @@ export async function updateAction(
         : undefined,
   };
   
-  const validatedFields = UpdateFormSchema.safeParse(fields);
+  const validatedFields = CreateUpdateFormSchema.safeParse(fields);
 
   if (!validatedFields.success) {
     const flattenedErrors = z.flattenError(validatedFields.error);

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const UpdateFormSchema = z.object({
+export const CreateUpdateFormSchema = z.object({
   documentId: z
     .string()
     .min(1, "Document ID is required"),
@@ -28,9 +28,9 @@ export const UpdateFormSchema = z.object({
     )
 });
 
-export type UpdateFormValues = z.infer<typeof UpdateFormSchema>;
+export type CreateUpdateFormValues = z.infer<typeof CreateUpdateFormSchema>;
 
-export type UpdateFormState = {
+export type CreateUpdateFormState = {
   success?: boolean;
   message?: string;
   data?: {
