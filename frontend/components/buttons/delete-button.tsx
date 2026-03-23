@@ -2,7 +2,7 @@
 
 import { actions } from "@/data/actions";
 import { Button } from "@/components/ui/button";
-import { type DeleteFormState } from "@/data/validation/menu";
+import { type DeleteFormState } from "@/data/validation/delete-menu-items";
 import { toast } from "sonner";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";

@@ -1,6 +1,6 @@
 "use server"
 
-import { type DeleteFormState, DeleteFormSchema } from "@/data/validation/menu";
+import { type DeleteFormState, DeleteFormSchema } from "@/data/validation/delete-menu-items";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { services } from "@/data/services";
