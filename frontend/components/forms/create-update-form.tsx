@@ -9,7 +9,7 @@ import {
   ComboboxList
 } from "@/components/ui/combobox";
 import { CreateUpdateFormState } from "@/data/validation";
-import DeleteButton from "@/components/buttons/delete-button";
+import DeleteForm from "@/components/forms/delete-form";
 import ImagePicker from "@/components/forms/image-picker";
 import { Input } from "@/components/ui/input";
 import SubmitButton from "@/components/buttons/submit-button";
@@ -157,7 +157,7 @@ export default function CreateUpdateForm({
         <SubmitButton />
       </form>
 
-      {menuItem?.documentId && <DeleteButton documentId={menuItem?.documentId} />}
+      {menuItem?.documentId && <DeleteForm documentId={menuItem?.documentId} />}
     </div>
   );
 }
