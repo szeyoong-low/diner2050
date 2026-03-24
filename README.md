@@ -23,6 +23,8 @@ I wanted to challenge myself to implement more advanced features that form the b
     - Backend: Strapi Cloud
     - CI/CD: Git
 
+> 🔴 In deployment, the app occasionally encounters server errors on the first load. The issue goes away after a refresh (or at most two), but I'll look into this soon.
+
 ## CRUD Operations
 The authentication token generated when logging in with auth0 enables users to create, edit, and delete items on the menu. Upon submission of the form, the input is processed by a server action (`data/actions`), which validates it against a schema (`data/validation`), before making a request to the relevant Strapi API endpoint (`data/services` and `data/data-api.ts`). Helpful error messages are placed below the input fields, and status updates are shown as toasts.
 
