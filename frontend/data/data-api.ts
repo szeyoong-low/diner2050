@@ -44,6 +44,7 @@ async function apiWithTimeout(
         signal: controller.signal, // Connect the abort signal to fetch
       });
 
+      if (init.method === "DELETE") return response;
       const contentType = response.headers.get("content-type") || "";
 
       if (!contentType.includes("application/json")) {
