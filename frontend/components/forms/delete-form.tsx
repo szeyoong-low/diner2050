@@ -24,7 +24,10 @@ export default function DeleteForm({documentId}: Readonly<IDeleteFormProps>) {
   );
   
   return(
-      <form action={deleteFormAction} onSubmit={() => toast.success("Deleted menu item.")}>
+      <form
+        action={deleteFormAction}
+        onSubmit={() => {toast.dismiss(); toast.success("Deleted menu item.")}}
+      >
         <input type="hidden" name="documentId" value={documentId} />
         <DeleteButton />
       </form>
