@@ -19,7 +19,7 @@ export default async function Home() {
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-100 md:w-150 h-50 md:h-75 bg-violet-600/15 rounded-full blur-3xl pointer-events-none" />
       
       <div className="flex flex-col gap-6 items-center justify-center">
-        <div className="md:hidden w-40">
+        <div className="lg:hidden w-40">
           <AuthButton />
         </div>
 

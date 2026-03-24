@@ -11,7 +11,7 @@ export default async function Header() {
       <Logo />
 
       <div className="flex flex-row items-center gap-4 absolute right-3">
-        <div className="collapse md:visible">
+        <div className="hidden lg:block">
           <AuthButton />
         </div>
 
