@@ -15,11 +15,11 @@ export default function MenuCard({ menuItem }: Readonly<IMenuCardProps>) {
 
   return (
     <div className="relative w-full max-w-sm md:max-w-md">
-      <div className="bg-white/4 backdrop-blur-2xl border border-white/8 rounded-3xl shadow-2xl shadow-black/60 overflow-hidden">
+      <div className="bg-white/4 hover:bg-sky-500 dark:hover:bg-blue-800 transition-colors ease-in-out backdrop-blur-2xl border border-white/8 rounded-3xl shadow-2xl shadow-black/60 overflow-hidden">
         <div className="h-px bg-linear-to-r from-transparent via-blue-500/60 to-transparent" />
 
         <Link href={`/${documentId}`}>
-          <Card>
+          <Card className="bg-slate-100 hover:bg-slate-50 dark:bg-zinc-900">
             <div className="flex justify-center">
               <div className="flex h-30 w-30 justify-center items-center">
                 <StrapiImage
