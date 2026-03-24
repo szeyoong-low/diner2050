@@ -26,25 +26,42 @@ type ApiOptions<P = Record<string, unknown>> = {
 async function apiWithTimeout(
   input: RequestInfo,
   init: RequestInit = {},
+  retries: number = 3,
+  delayRetry: number = 2000,
   timeoutMs = 8000 // 8 seconds default - good balance between patience and UX
 ): Promise<Response> {
   // Create controller to manage request cancellation
   const controller = new AbortController();
 
-  // Set up automatic cancellation after timeout period
-  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  // This retry logic aims to address the cold start problem on Strapi's end.
+  for (let i = 0; i < retries; i++) {
+    // Set up automatic cancellation after timeout period
+    const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  
+    try {
+      const response = await fetch(input, {
+        ...init,
+        signal: controller.signal, // Connect the abort signal to fetch
+      });
 
-  try {
-    const response = await fetch(input, {
-      ...init,
-      signal: controller.signal, // Connect the abort signal to fetch
-    });
-    return response;
-  } finally {
-    // Always clean up the timeout to prevent memory leaks
-    // This runs whether the request succeeds, fails, or times out
-    clearTimeout(timeout);
+      const contentType = response.headers.get("content-type") || "";
+
+      if (!contentType.includes("application/json")) {
+        // Strapi isn't ready yet — wait and retry
+        if (i < retries - 1) await new Promise(r => setTimeout(r, delayRetry));
+        continue;
+      }
+      return response;
+    } catch (error) {
+      if (i === retries - 1) throw error;
+      await new Promise(r => setTimeout(r, delayRetry));
+    } finally {
+      // Always clean up the timeout to prevent memory leaks
+      // This runs whether the request succeeds, fails, or times out
+      clearTimeout(timeout);
+    }
   }
+  throw new Error("Request to Strapi timed out");
 }
 
 export async function apiRequest<T = unknown, P = Record<string, unknown>>(
