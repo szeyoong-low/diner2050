@@ -14,6 +14,9 @@ export type TMenuItem = {
   MenuImage: TMenuImage;
 };
 
+// Adapted from Paul Bratslavsky's "Epic Next.js 15 Tutorial"
+// https://strapi.io/blog/epic-next-js-15-tutorial-part-1-learn-next-js-by-building-a-real-life-project
+
 export type TStrapiResponse<T = null> = {
   success: boolean;
   data?: T;

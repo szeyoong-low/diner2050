@@ -7,7 +7,7 @@ const baseUrl = getStrapiURL();
 
 export async function deleteService(documentId: string): Promise<TStrapiResponse<null>> {
   const session = (await auth0.getAccessToken()).token;
-  if (!session) throw new Error("You are not authorized");
+  if (!session) throw new Error("You are not You must be logged in to delete menu items.");
 
   const url = new URL(`/api/menu-items/${documentId}`, baseUrl);
   

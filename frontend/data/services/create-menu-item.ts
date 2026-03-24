@@ -4,7 +4,7 @@ import { getStrapiURL } from "@/lib/utils";
 import { queryMenuItem } from "@/lib/constants";
 import type { TStrapiResponse, TMenuItem } from "@/types";
 
-type TUpdate = {
+type TCreate = {
   Name: string;
   Description: string;
   Price: number;
@@ -15,7 +15,7 @@ type TUpdate = {
 const baseUrl = getStrapiURL();
 
 export async function createService(
-  menuData: TUpdate
+  menuData: TCreate
 ): Promise<TStrapiResponse<TMenuItem>> {
   const session = await auth0.getSession();
   if (!session) throw new Error("You must be logged in to create menu items.");

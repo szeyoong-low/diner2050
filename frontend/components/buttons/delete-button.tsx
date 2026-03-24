@@ -1,3 +1,6 @@
+// Adapted from auth0's Next.js SDK tutorial
+// https://auth0.com/docs/quickstart/webapp/nextjs
+
 "use client"
 
 import { Button } from "@/components/ui/button";

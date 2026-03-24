@@ -1,3 +1,6 @@
+// Adapted from auth0's Next.js SDK tutorial
+// https://auth0.com/docs/quickstart/webapp/nextjs
+
 import { auth0 } from "@/lib/auth0";
 import LoginButton from "@/components/auth0/LoginButton";
 import LogoutButton from "@/components/auth0/LogoutButton";

@@ -1,3 +1,6 @@
+// Adapted from auth0's Next.js SDK tutorial
+// https://auth0.com/docs/quickstart/webapp/nextjs
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import { StrapiImage } from "@/components/images/strapi-image";

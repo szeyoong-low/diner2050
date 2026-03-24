@@ -9,7 +9,7 @@ I wanted to challenge myself to implement more advanced features that form the b
 - **Frontend:**
     - Framework: Next.js, React
     - Language: TypeScript
-    - UI: Tailwind CSS, Lucide React, Shadcn, Sonner
+    - UI: Tailwind CSS, Lucide React, React-icons, Shadcn, Sonner
     - Authentication: auth0
     - Data validation: Zod
 - **Backend:**
@@ -54,5 +54,16 @@ Unlike previous projects, this one was always ready to go from the get go. My ma
     - Also, since these are more commonly used in industry, there are probably more libraries and tools available to streamline particular areas like authentication and database connections. For instance, I came across Neon and Prisma, which can provide a serverless Postgres database while still giving me control over my code.
 
 ## Acknowledgements
-- Paul Bratslavsky's [Epic Next.js 15 Tutorial](https://strapi.io/blog/epic-next-js-15-tutorial-part-1-learn-next-js-by-building-a-real-life-project) - API utilities, middleware setup, type definitions, error handling, image submission
+Their work have been attributed wherever used or adapted in this project. Any omissions are inadvertent.
+
+- Paul Bratslavsky's [Epic Next.js 15 Tutorial](https://strapi.io/blog/epic-next-js-15-tutorial-part-1-learn-next-js-by-building-a-real-life-project) ([repo](https://github.com/PaulBratslavsky/next-strapi-app-qa/tree/01-post)) - API utilities, middleware setup, type definitions, error handling, image submission
 - auth0's [Next.js SDK tutorial](https://auth0.com/docs/quickstart/webapp/nextjs) - UI components, colour palette
+- Images were sourced from:
+    - [Vecteezy](https://www.vecteezy.com/)
+    - [Rawpixel](https://www.rawpixel.com/)
+    - [Similar PNG](https://similarpng.com/)
+    - [NicePNG](https://www.nicepng.com/)
+    - [Pngtree](https://pngtree.com/)
+    - [Macsha UK](https://www.macsha.co.uk/)
+    - [iStock](https://www.istockphoto.com/)
+    - [PNGEgg](https://www.pngegg.com/)

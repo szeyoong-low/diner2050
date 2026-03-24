@@ -1,3 +1,6 @@
+// Adapted from Paul Bratslavsky's "Epic Next.js 15 Tutorial"
+// https://strapi.io/blog/epic-next-js-15-tutorial-part-1-learn-next-js-by-building-a-real-life-project
+
 import type { TStrapiResponse } from "@/types";
 
 type HTTPMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
