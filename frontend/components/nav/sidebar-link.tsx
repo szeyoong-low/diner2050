@@ -8,7 +8,7 @@ export default function SidebarLink({
   children: React.ReactNode;
 }>) {
   return (
-    <Link href={href} className="flex flex-row gap-2 p-3">
+    <Link href={href} className="flex flex-row gap-2 p-3 items-center">
       {children}
     </Link>
   );
